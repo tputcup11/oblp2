@@ -1,16 +1,28 @@
-package juegoSumas;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package obligatoriop2;
 
-import java.util.*;
+import java.util.ArrayList;
 
+/**
+ *
+ * @author Admin
+ */
 public class Sistema {
     private ArrayList<Jugador> listaJugadores;
-    private Partida partida;
+    private Partida partida; 
 
-    //Constructor
-    public Sistema(){
-        listaJugadores = new ArrayList<>();
+    public ArrayList<Jugador> getListaJugadores() {
+        return listaJugadores;
     }
-    
+
+    public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
+        this.listaJugadores = listaJugadores;
+    }
+
     public Partida getPartida() {
         return partida;
     }
@@ -19,23 +31,6 @@ public class Sistema {
         this.partida = partida;
     }
     
-    public ArrayList<Jugador> getJugadores(){
-        return listaJugadores;
-    }
     
-    public void agregarJugador(Jugador unJugador){
-        listaJugadores.add(unJugador);
-    }                                                                                                                   
     
-    //Para TESTEAR: Metodo que ordena ArrayList por cant. de partidas ganadas.
-    public ArrayList<Jugador> ordenarGanadores(){
-        Collections.sort(this.getJugadores(), new CriterioGanadas());
-        return this.getJugadores();
-    }
-    //Criterio de comparacion del sort.
-     private class CriterioGanadas implements Comparator<Jugador> {
-        public int compare(Jugador jugador1, Jugador jugador2){
-            return jugador1.getPartidasGanadas() - jugador2.getPartidasGanadas();
-        }
-    }
 }
