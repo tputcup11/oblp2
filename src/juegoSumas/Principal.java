@@ -33,15 +33,15 @@ public class Principal {
                System.out.println("Ingrese el alias del jugador:");
                aliasJugador = in.nextLine();
                
-               Jugador jugador = new Jugador(nombreJugador, edadJugador, aliasJugador);
-               sistema.getJugadores().add(jugador);
-               System.out.println("Jugador Ingresado: " + jugador.toString());
+               //Jugador jugador = new Jugador(nombreJugador, edadJugador, aliasJugador);
+               //sistema.getJugadores().add(jugador);
+               //System.out.println("Jugador Ingresado: " + jugador.toString());
             }
             else if(seleccion.equals("B")){
                //Iniciar Juego
                //Listar Jugadores, Elegir 2 jugadores, 2 letras. instanciar una partida.
                
-               Partida partida = new Partida(jugador1, jugador2, letraj1, letraj2);
+               //Partida partida = new Partida(jugador1, jugador2, letraj1, letraj2);
             }
             else if(seleccion.equals("C")){
                //Listar Ranking 

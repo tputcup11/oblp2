@@ -4,18 +4,25 @@ import java.util.*;
 
 public class Sistema {
     private ArrayList<Jugador> listaJugadores;
-    
+    private Partida partida;
+
     //Constructor
     public Sistema(){
         listaJugadores = new ArrayList<>();
     }
     
-    //GetLista
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+    
     public ArrayList<Jugador> getJugadores(){
         return listaJugadores;
     }
     
-    //SetLista
     public void agregarJugador(Jugador unJugador){
         listaJugadores.add(unJugador);
     }                                                                                                                   
