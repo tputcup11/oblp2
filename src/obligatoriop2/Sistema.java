@@ -34,6 +34,7 @@ public class Sistema {
     }
     //Criterio de comparacion del sort.
      private class CriterioGanadas implements Comparator<Jugador> {
+        @Override
         public int compare(Jugador jugador1, Jugador jugador2){
             return jugador1.getPartidasGanadas() - jugador2.getPartidasGanadas();
         }
