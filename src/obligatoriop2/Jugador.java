@@ -8,7 +8,7 @@ public class Jugador{
    private int partidasGanadas;
    private int partidasJugadas;
 
-    //TODO: CONSTRUCTOR
+   
    public Jugador(String nombreJugador, int edadJugador, String aliasJugador){
        this.nombre = nombreJugador;
        this.edad = edadJugador;
@@ -39,7 +39,7 @@ public class Jugador{
     public void setAlias(String alias) {
         this.alias = alias;
     }
-    
+
     public int getPartidasGanadas() {
         return partidasGanadas;
     }
@@ -55,9 +55,11 @@ public class Jugador{
     public void setPartidasJugadas(int partidasJugadas) {
         this.partidasJugadas = partidasJugadas;
     }
-    
+
     @Override
     public String toString(){
         return "Nombre: "+this.getNombre()+" Edad: "+ this.getEdad()+" Alias: "+this.getAlias();
     }
 }
+    
+

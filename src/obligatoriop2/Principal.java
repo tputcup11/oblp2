@@ -7,18 +7,19 @@ public class Principal {
     public static void main(String[] args) {
         //Inicializar objetos del sistema y variables
         Sistema sistema = new Sistema();
-        Jugador jugador1;
-        Jugador jugador2;
+        Jugador jugador1 = null;
+        Jugador jugador2 = null;
         String seleccion;
         String nombreJugador;
         String aliasJugador;
-        String letraJ1;
-        String letraJ2;
+        char siglaJ1 = ' ';
+        char siglaJ2 = ' ';
         int edadJugador;
+        boolean valorValido;
         System.out.println("------ Juego Sumas ------");
         
         //Loop Principal - Muestra menu principal y pide opcion
-        seleccion = menuPrincipal();
+        seleccion = sistema.menuPrincipal();
         
         while (!seleccion.equals("D")){
             switch (seleccion) {
@@ -38,6 +39,7 @@ public class Principal {
                     sistema.getListaJugadores().add(jugador);
                     System.out.println("Jugador Ingresado: " + jugador.toString());
                     break;
+                    
                 case "B":
                 //Iniciar Juego
                     //Listar Jugadores
@@ -45,45 +47,92 @@ public class Principal {
                     for (int i = 0; i < sistema.getListaJugadores().size(); i++){
                         System.out.println( i+1 + ")"+ sistema.getListaJugadores().get(i).toString());
                     }
+                    //Pedir Jugador 1
+                    valorValido = false;
+                    while (!valorValido){
+                        try {
+                            
+                            int entrada = in.nextInt();
+                            in.nextLine();
+                            if (entrada > 0 && entrada <= sistema.getListaJugadores().size()){
+                                jugador1 = sistema.getListaJugadores().get(entrada - 1);
+                                valorValido = true;
+                            }else{
+                                
+                                System.out.println("Numero incorrecto, vuelva a intentar: ");
+                            }
+                        } catch (Exception e){
+                            System.out.println("Numero incorrecto, vuelva a intentar: ");
+                            in.nextLine();
+                        }
+                    }
+                    //Pedir Sigla 1
+                    System.out.println("Ingrese una letra para el Jugador 1:");
+                    valorValido = false;
+                    while (!valorValido){
+                        try {
+                            String entrada = in.nextLine().toUpperCase();
+                            if (entrada.length() == 1 && entrada.toUpperCase().charAt(0) >= 65 && entrada.toUpperCase().charAt(0) <= 90){
+                                siglaJ1 = entrada.charAt(0);
+                                valorValido = true;
+                            }else{
+                                System.out.println("Debe ingresar una sola letra y no puede ser un número:");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Debe ingresar una sola letra y no puede ser un número:");
+                        }
+                    }
                     
-                    //TODO: Elegir 2 jugadores, 2 letras
+                    //Listar Jugadores
+                    System.out.println("Seleccione al segundo jugador:");
+                    for (int i = 0; i < sistema.getListaJugadores().size(); i++){
+                        System.out.println( i+1 + ")"+ sistema.getListaJugadores().get(i).toString());
+                    }
                     
-                    //Partida partida = new Partida(jugador1, jugador2, letraj1, letraj2);
+                    //TODO: Implementar compareTo para el objeto Jugador para validar que no se seleccione el mismo jugador dos veces.
                     
-                    //TODO: Empezar Turno, etc...
+                    //Seleccionar Jugador 2
+                    valorValido = false;
+                    while (!valorValido){
+                        try {
+                            int entrada = in.nextInt();
+                            in.nextLine();
+                            if (entrada > 0 && entrada <= sistema.getListaJugadores().size()){
+                                jugador2 = sistema.getListaJugadores().get(entrada - 1);
+                                valorValido = true;
+                            }else{
+                                System.out.println("Numero incorrecto, vuelva a intentar: \n");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Numero incorrecto, vuelva a intentar: \n");
+                            in.nextLine();
+                        }
+                    }
+                   //Pedir Sigla 2
+                    System.out.println("Ingrese una letra para el Jugador 2:");
+                    valorValido = false;
+                    while (!valorValido){
+                        try {
+                            String entrada = in.nextLine().toUpperCase();
+                            if (entrada.length() == 1 && entrada.toUpperCase().charAt(0) >= 65 && entrada.toUpperCase().charAt(0) <= 90){
+                                siglaJ2 = entrada.charAt(0);
+                                valorValido = true;
+                            }else{
+                                System.out.println("Debe ingresar una sola letra y no puede ser un número:");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Debe ingresar una sola letra y no puede ser un número:");
+                        }
+                    } 
+                    sistema.crearPartida(jugador1, siglaJ1, jugador2, siglaJ2);
+                    //sistema.getPartida().inicializar();
+                    
                     break;
                 case "C":
                     //Listar Ranking
                     break;
             }
-            seleccion = menuPrincipal();
-        }
-    }
-
-    //Deberia ir en sistema??
-    public static String menuPrincipal(){
-        String opcion;
-        
-        System.out.println("\n Menú del Juego:");
-        System.out.println("a) Registrar Jugador");
-        System.out.println("b) Jugar a 'Sumas'");
-        System.out.println("c) Ver Ranking de Jugadores");
-        System.out.println("d) Terminar");
-        
-        opcion = in.nextLine();
-        switch(opcion.toUpperCase()) {
-            case "A":
-                return "A";
-            case "B":
-                return "B";
-            case "C":
-                return "C";
-            case "D":
-                return "D";
-            default:
-                System.out.println("Opción Incorrecta. Intente otra vez.");
-                System.out.println("-------------------------------------");
-                return menuPrincipal();
+            seleccion = sistema.menuPrincipal();
         }
     }
 }
