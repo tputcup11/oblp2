@@ -1,9 +1,33 @@
 package obligatoriop2;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
     static Scanner in = new Scanner(System.in);
-    
+    public static String menuPrincipal(){
+        String opcion;
+        Scanner in = new Scanner(System.in);
+        System.out.println("\n Menú del Juego:");
+        System.out.println("a) Registrar Jugador");
+        System.out.println("b) Jugar a 'Sumas'");
+        System.out.println("c) Ver Ranking de Jugadores");
+        System.out.println("d) Terminar");
+        opcion = in.nextLine();
+        switch(opcion.toUpperCase()) {
+            case "A":
+                return "A";
+            case "B":
+                return "B";
+            case "C":
+                return "C";
+            case "D":
+                return "D";
+            default:
+                System.out.println("Opción Incorrecta. Intente otra vez.");
+                System.out.println("-------------------------------------");
+                return menuPrincipal();
+        }
+    }
     public static void main(String[] args) {
         //Inicializar objetos del sistema y variables
         Sistema sistema = new Sistema();
@@ -19,7 +43,7 @@ public class Principal {
         System.out.println("------ Juego Sumas ------");
         
         //Loop Principal - Muestra menu principal y pide opcion
-        seleccion = sistema.menuPrincipal();
+        seleccion = menuPrincipal();
         
         while (!seleccion.equals("D")){
             switch (seleccion) {
@@ -125,14 +149,73 @@ public class Principal {
                         }
                     } 
                     sistema.crearPartida(jugador1, siglaJ1, jugador2, siglaJ2);
-                    //sistema.getPartida().inicializar();
+                    sistema.getPartida().inicializar();
+                    boolean seguir=true;
+                    while(seguir)
+                    {
+                        try
+                        {
+                            System.out.println(sistema.getPartida().toString());
+                            System.out.println("A - Ayuda");
+                            System.out.println("0 - Dado base");
+                            System.out.println("N - Dado extra");
+                            System.out.println("X - Abandonar");
+                            System.out.println("P - Pasar");
+                            System.out.print("Opcion : ");
+                            char opcion=in.nextLine().toUpperCase().charAt(0);
+                            switch(opcion)
+                            {
+                                case 'A':
+                                    System.out.println("Opcion A");
+                                    String respuesta=sistema.ayuda();
+                                    System.out.println(respuesta);
+                                    break;
+                                case '0':
+                                    System.out.println("Opcion 0");
+                                    sistema.ponerFichaBase();
+                                    break;
+                                case 'N':
+                                    System.out.println("Opcion N");
+                                    String extras=in.nextLine();
+                                    sistema.ponerFichaExtra(extras);
+                                    break;
+                                case 'X':
+                                    System.out.println("Opcion X");
+                                    seguir=false;
+                                    break;
+                                case 'P':
+                                    System.out.println("Opcion P");
+                                    sistema.pasar();
+                                    break;
+                                default:
+                                    System.out.println("Opcion desconocida");
+                                    break;
+
+                            }
+                        }catch(Exception ex)
+                        {
+                            System.out.println(ex.getMessage());
+                        }
+                        
+                    }
+                    
+                    
                     
                     break;
                 case "C":
-                    //Listar Ranking
+                    ArrayList<Jugador> listaJugadores=sistema.ranking();
+                    System.out.println("RANKING\n");
+                    for (int i = 0; i < sistema.getListaJugadores().size(); i++){
+                        System.out.println( i+1 + ")"+ listaJugadores.get(i).toString());
+                    }
                     break;
             }
-            seleccion = sistema.menuPrincipal();
+            seleccion = menuPrincipal();
         }
     }
 }
+
+
+
+
+

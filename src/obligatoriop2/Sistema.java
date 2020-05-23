@@ -41,35 +41,26 @@ public class Sistema {
         partida.ponerFichaBase();
     }
     
-    public void ponerFichaExtra(int posicionDado1,int posicionDado2,int posicionDado3) throws Exception{
-        partida.ponerFichaExtra(posicionDado1,posicionDado2,posicionDado3);
+    public void ponerFichaExtra(String extra) throws Exception{
+        partida.ponerFichaExtra(extra);
     }
     
-    public String menuPrincipal(){
-        String opcion;
-        Scanner in = new Scanner(System.in);
-        System.out.println("\n Menú del Juego:");
-        System.out.println("a) Registrar Jugador");
-        System.out.println("b) Jugar a 'Sumas'");
-        System.out.println("c) Ver Ranking de Jugadores");
-        System.out.println("d) Terminar");
-        opcion = in.nextLine();
-        switch(opcion.toUpperCase()) {
-            case "A":
-                return "A";
-            case "B":
-                return "B";
-            case "C":
-                return "C";
-            case "D":
-                return "D";
-            default:
-                System.out.println("Opción Incorrecta. Intente otra vez.");
-                System.out.println("-------------------------------------");
-                return this.menuPrincipal();
-        }
+    public void pasar()
+    {
+        partida.pasar();
+    }
+
+    public String ayuda() {
+        return partida.ayuda();
+    }
+
+    public ArrayList<Jugador> ranking() {
+        Collections.sort(listaJugadores,new CriterioGanadas());
+        return listaJugadores;
     }
     
+
+  
     
     //Criterio de comparacion del sort.
      private class CriterioGanadas implements Comparator<Jugador> {
