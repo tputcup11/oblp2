@@ -44,21 +44,21 @@ public class Jugador{
         return partidasGanadas;
     }
 
-    public void setPartidasGanadas(int partidasGanadas) {
-        this.partidasGanadas = partidasGanadas;
+    public void setPartidasGanadas() {
+        this.partidasGanadas = partidasGanadas++;
     }
 
     public int getPartidasJugadas() {
         return partidasJugadas;
     }
 
-    public void setPartidasJugadas(int partidasJugadas) {
-        this.partidasJugadas = partidasJugadas;
+    public void setPartidasJugadas() {
+        this.partidasJugadas = partidasJugadas++;
     }
 
     @Override
     public String toString(){
-        return "Nombre: "+this.getNombre()+" Edad: "+ this.getEdad()+" Alias: "+this.getAlias();
+        return "Nombre: "+this.getNombre()+", Edad: "+ this.getEdad()+", Alias: "+this.getAlias();
     }
 }
     

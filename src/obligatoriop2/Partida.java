@@ -218,7 +218,43 @@ public class Partida {
         return combinaciones;
     }
     public Boolean tableroLleno(){
-        //TODO: Buscar si existe alguna posicion que que empiece con color verde ?
-        return false; //place holder para que no de error mientras se implementa
+        
+        for (int i = 1; i <= 20; i++) {
+            if (!tablero.estaOcupado(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public String mostrarGanador(boolean abandona){
+        boolean empate = false;
+        String respuesta = "";
+        Jugador ganador = jugador1;
+        int puntosJ1 = tablero.contarPuntos(sigla1);
+        int puntosJ2 = tablero.contarPuntos(sigla2);
+        if (abandona) {
+            if (turnoJugador1) {
+                ganador = jugador2;
+            }
+        }else{
+            if (puntosJ1 > puntosJ2) {
+                ganador = jugador1;
+            }else if (puntosJ1 < puntosJ2) {
+                ganador = jugador2;
+            }else{
+                empate = true;
+            }
+        }
+        if (empate) {
+            respuesta = "Fin de la Partida: EMPATE \n Puntos Finales: \n"+jugador1.getAlias()+": "+puntosJ1+"\n"+jugador2.getAlias()+": "+puntosJ2+"\n";
+        }else{
+            respuesta = "Fin de la Partida: GANADOR: "+ganador.getAlias()+" \nPuntos Finales: \n"+jugador1.getAlias()+": "+puntosJ1+"\n"+jugador2.getAlias()+": "+puntosJ2+"\n";
+            ganador.setPartidasGanadas();
+        }
+        jugador1.setPartidasJugadas();
+        jugador2.setPartidasJugadas();
+        
+
+        return respuesta+"Tablero Final: \n"+tablero.toString();
     }
 }

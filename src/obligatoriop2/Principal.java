@@ -150,7 +150,8 @@ public class Principal {
                     } 
                     sistema.crearPartida(jugador1, siglaJ1, jugador2, siglaJ2);
                     sistema.getPartida().inicializar();
-                    boolean seguir=true;
+                    boolean seguir = true;
+                    boolean abandona = false;
                     while(seguir && !sistema.tableroLleno())
                     {
                         try
@@ -181,7 +182,8 @@ public class Principal {
                                     break;
                                 case 'X':
                                     System.out.println("Opcion X");
-                                    seguir=false;
+                                    seguir = false;
+                                    abandona = true;
                                     //sistema.mostrarGanador();
                                     break;
                                 case 'P':
@@ -199,6 +201,7 @@ public class Principal {
                         }
                         
                     }
+                    System.out.println(sistema.mostrarGanador(abandona));
                     
                     
                     
@@ -207,7 +210,7 @@ public class Principal {
                     ArrayList<Jugador> listaJugadores=sistema.ranking();
                     System.out.println("RANKING\n");
                     for (int i = 0; i < sistema.getListaJugadores().size(); i++){
-                        System.out.println( i+1 + ")"+ listaJugadores.get(i).toString());
+                        System.out.println( i+1 + ")"+ listaJugadores.get(i).toString()+"\n     Partidas Jugadas: "+listaJugadores.get(i).getPartidasJugadas()+"\n     Partidas Ganadas: "+listaJugadores.get(i).getPartidasGanadas());
                     }
                     break;
             }

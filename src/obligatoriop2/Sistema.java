@@ -49,11 +49,14 @@ public class Sistema {
     {
         partida.pasar();
     }
-
+    
     public String ayuda() {
         return partida.ayuda();
     }
-    
+    public String mostrarGanador(boolean abandona){
+        return partida.mostrarGanador(abandona);
+    }
+
     public Boolean tableroLleno() {
         return partida.tableroLleno();
     }
