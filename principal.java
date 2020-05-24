@@ -204,7 +204,7 @@ public class Principal {
                     break;
                 case "C":
                     ArrayList<Jugador> listaJugadores=sistema.ranking();
-                    System.out.println("RANKING\n");
+                     System.out.println("RANKING\n");
                     for (int i = 0; i < sistema.getListaJugadores().size(); i++){
                         System.out.println( i+1 + ")"+ listaJugadores.get(i).toString());
                     }
