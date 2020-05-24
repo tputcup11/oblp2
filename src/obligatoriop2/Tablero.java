@@ -94,6 +94,11 @@ public class Tablero {
                     contadorAlineados = 0;
                 }
             }
+            if (contadorAlineados != 0 && contadorAlineados > puntosAuxiliar) {
+                puntosAuxiliar = contadorAlineados;
+                contadorAlineados = 0;
+            }
+            
             if(puntosAuxiliar == 5){
                 puntos += 5;
             }
@@ -125,6 +130,10 @@ public class Tablero {
                     contadorAlineados = 0;
                 }
             }
+            if (contadorAlineados != 0 && contadorAlineados > puntosAuxiliar) {
+                puntosAuxiliar = contadorAlineados;
+                contadorAlineados = 0;
+            }
             if(puntosAuxiliar == 4){
                 puntos += 4;
             }
@@ -134,7 +143,40 @@ public class Tablero {
             contadorAlineados = 0;
             puntosAuxiliar = 0;
         }
-        
+        //Diagonales principales (izq. a derecha)
+        if (this.tablero[1][0].contains(sigla) && this.tablero[2][1].contains(sigla) && this.tablero[3][2].contains(sigla)) {
+            puntos += 3;
+        }
+        if (this.tablero[0][0].contains(sigla) && this.tablero[1][1].contains(sigla) && this.tablero[2][2].contains(sigla) && this.tablero[3][3].contains(sigla)) {
+            puntos += 4;
+        }else if (this.tablero[0][0].contains(sigla) && this.tablero[1][1].contains(sigla) && this.tablero[2][2].contains(sigla) || this.tablero[1][1].contains(sigla) && this.tablero[2][2].contains(sigla) && this.tablero[3][3].contains(sigla)) {
+            puntos += 3;
+        }
+        if (this.tablero[0][1].contains(sigla) && this.tablero[1][2].contains(sigla) && this.tablero[2][3].contains(sigla) && this.tablero[3][1].contains(sigla)) {
+            puntos += 4;
+        }else if (this.tablero[0][1].contains(sigla) && this.tablero[1][2].contains(sigla) && this.tablero[2][3].contains(sigla) || this.tablero[1][2].contains(sigla) && this.tablero[2][3].contains(sigla) && this.tablero[3][1].contains(sigla)) {
+            puntos += 3;
+        }
+        if (this.tablero[0][2].contains(sigla) && this.tablero[1][3].contains(sigla) && this.tablero[2][4].contains(sigla)) {
+            puntos += 3;
+        }
+        //Diagonales Secundarias (Derecha a izq.)
+        if (this.tablero[0][2].contains(sigla) && this.tablero[1][1].contains(sigla) && this.tablero[2][0].contains(sigla)) {
+            puntos += 3;
+        }
+        if (this.tablero[0][3].contains(sigla) && this.tablero[1][2].contains(sigla) && this.tablero[2][1].contains(sigla) && this.tablero[3][0].contains(sigla)) {
+            puntos += 4;
+        }else if (this.tablero[0][3].contains(sigla) && this.tablero[1][2].contains(sigla) && this.tablero[2][1].contains(sigla) || this.tablero[1][2].contains(sigla) && this.tablero[2][1].contains(sigla) && this.tablero[3][0].contains(sigla)) {
+            puntos += 3;
+        }
+        if (this.tablero[0][4].contains(sigla) && this.tablero[1][3].contains(sigla) && this.tablero[2][2].contains(sigla) && this.tablero[3][1].contains(sigla)) {
+            puntos += 4;
+        }else if (this.tablero[0][4].contains(sigla) && this.tablero[1][3].contains(sigla) && this.tablero[2][2].contains(sigla) || this.tablero[1][3].contains(sigla) && this.tablero[2][2].contains(sigla) && this.tablero[3][1].contains(sigla)) {
+            puntos += 3;
+        }
+        if (this.tablero[1][4].contains(sigla) && this.tablero[2][3].contains(sigla) && this.tablero[3][2].contains(sigla)) {
+            puntos += 3;
+        }
         return puntos;
     }
 

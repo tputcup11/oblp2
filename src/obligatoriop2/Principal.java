@@ -151,7 +151,7 @@ public class Principal {
                     sistema.crearPartida(jugador1, siglaJ1, jugador2, siglaJ2);
                     sistema.getPartida().inicializar();
                     boolean seguir=true;
-                    while(seguir)
+                    while(seguir && !sistema.tableroLleno())
                     {
                         try
                         {
@@ -166,7 +166,7 @@ public class Principal {
                             switch(opcion)
                             {
                                 case 'A':
-                                    System.out.println("Opcion A");
+                                    System.out.println("Opcion A: Ayuda - Posibles Jugadas");
                                     String respuesta=sistema.ayuda();
                                     System.out.println(respuesta);
                                     break;
@@ -182,6 +182,7 @@ public class Principal {
                                 case 'X':
                                     System.out.println("Opcion X");
                                     seguir=false;
+                                    //sistema.mostrarGanador();
                                     break;
                                 case 'P':
                                     System.out.println("Opcion P");

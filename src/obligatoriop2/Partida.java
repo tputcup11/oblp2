@@ -57,11 +57,6 @@ public class Partida {
         lanzarDados();
     }
 
-    /*
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero; 
-    }*/
-
     public void ponerFichaExtra(String extras) throws Exception {
         String[] corta = extras.split(" ");
         int[] numerosRecuperados = new int[corta.length];
@@ -94,7 +89,7 @@ public class Partida {
             lanzarDados();
         }
     }
-
+    @Override
     public String toString() {
         String mostrarDado = "\n(" + dados[0].getNumero() + ") ";
         for (int i = 1; i < dados.length; i++) {
@@ -105,7 +100,7 @@ public class Partida {
             turno = jugador1.getAlias();
         }
 
-        return tablero.toString() + mostrarDado + "\nT U R N O : " + turno + "\n";
+        return tablero.toString() + "\n" + "Puntos " + jugador1.getAlias() + ": " + tablero.contarPuntos(sigla1) + "\n" + "Puntos " + jugador2.getAlias() + ": " + tablero.contarPuntos(sigla2) + mostrarDado + "\nT U R N O : " + turno + "\n";
     }
 
     private ArrayList<Integer> convertirDadoAnumeros() {
@@ -122,91 +117,38 @@ public class Partida {
     }
 
     public String ayuda() {
-        int numero = dados[0].getNumero();
         String respuesta = "";
-        String[] combinatoria = new String[120];
-
-        ArrayList<Integer[]> combinaciones = new ArrayList<>();
-
-        Integer[] nuevo = new Integer[1];
-        nuevo[0] = dados[0].getNumero();
-        combinaciones.add(nuevo);
-//        3  4  2   2   4
-        //       
-        //       3
-
-        //       3   (3 4)  (3 2)  (3 2)  (3 4)   
-        //      3   (3 4)  (3 2)  (3 2)  (3 4)  (3  4  4) (3 4 2)
-        for (int x = 1; x <= 4; x++) {
-            int tamanio=combinaciones.size();
-            ArrayList<Integer[]> listaAux=new ArrayList<>();
-            for (int z=0;z<tamanio;z++) {
-                Integer[] numeros=combinaciones.get(z);
-                if (x == numeros.length) {
-                    for (int i = 1; i < 5; i++) {
-                        int num = dados[i].getNumero();
-                        nuevo = new Integer[numeros.length + 1];
-                        int j;
-                        for (j = 0; j < numeros.length; j++) {
-                            nuevo[j] = numeros[j];
-                        }
-                        nuevo[j] = num;
-                        if(!estaContenido(nuevo,listaAux))
-                        {
-                            if(esValido(nuevo))
-                            {
-                                listaAux.add(nuevo);
-                            }
-                        }
-
-                    }
-                }
-            }
-            combinaciones.addAll(listaAux);
-        }
-
         int i=1;
-        for(Integer[] vec : combinaciones)
-        {
-            int suma=sumatoria(vec);
-            if(suma<=20 && !tablero.estaOcupado(suma))
+        //Arrays combinaciones
+        ArrayList<Integer[]> combinaciones = combinar();
+        ArrayList<Integer[]> combFinales = new ArrayList<>();
+        
+        for(Integer[] vec : combinaciones){
+            int suma = sumatoria(vec);
+            if(suma <= 20 && !estaContenido(vec, combFinales)){
+                combFinales.add(vec);
+            }
+        }
+        
+        for(Integer[] vec : combFinales){
+            int suma = sumatoria(vec);
+            if(!tablero.estaOcupado(suma))
             {
                 String aux="(";
-                for(int j=0;j<vec.length;j++)
-                {
+                for(int j = 0;j < vec.length;j++){
                     aux+=vec[j]+" ";
                 }
-                respuesta+="Opcion "+i+" tomar los siguiente numeros "+aux+")\n";
+                respuesta+="Opcion "+i+": Tomar los siguiente numeros "+aux+") para ocupar la posición "+suma+"\n";
                 i++;
             }
         }
-
         return respuesta;
-
-    }
-
-    private boolean esValido(Integer numerosRecuperados[])
-    {
-        ArrayList<Integer> numerosDados = convertirDadoAnumeros();
-        for (int i = 0; i < numerosRecuperados.length; i++) {
-           
-                
-                    if (!numerosDados.contains(numerosRecuperados[i])) {
-                        return false;
-                    }
-                    else{
-                        numerosDados.remove(numerosRecuperados[i]);
-                    }
-                
-           
-        }
-        return true;
     }
     
     private int sumatoria(Integer[] vec)
     {
         int suma=0;
-        for(Integer numero:vec)
+        for(Integer numero : vec)
         {
             suma+=numero;
         }
@@ -214,35 +156,69 @@ public class Partida {
     }
     
     private boolean estaContenido(Integer[] vector, ArrayList<Integer[]> listaAux) {
-        for(Integer[] numeros:listaAux)
-        {
-            if(sonIguales(numeros,vector))
-                return true;
+        for(Integer[] numeros:listaAux){
+            if(sumatoria(numeros) == sumatoria(vector)){
+              return true;  
+            }
         }
-
         return false;
     }
-
-    private boolean sonIguales(Integer[] numeros, Integer[] vector) {
-        if(numeros.length==vector.length)
-        {
-            
-            for(int i=1;i<numeros.length;i++)
-            {
-                int contador=0;
-               for(int j=1;j<numeros.length;j++)
-                {
-                    if(!numeros[i].equals(vector[j]))
-                        return false;
-                            
-                } 
-            }
-            return true;
-        }
-        else{
-            return false;
-        }
     
-
-}
+    private ArrayList<Integer[]> combinar(){
+        //Array combinaciones
+        ArrayList<Integer[]> combinaciones = new ArrayList<>();
+        
+        //Ingreso el primer dado
+        Integer[] comb = new Integer[1];
+        comb[0] = dados[0].getNumero();
+        
+        combinaciones.add(comb);
+        //Ingreso las combinaciones de dos dados
+        
+        for (int i = 1; i < 5; i++) {
+            comb = new Integer[2];
+            comb[0] = dados[0].getNumero(); //La base se mantiene fija
+            comb[1] = dados[i].getNumero();
+            combinaciones.add(comb);
+        }
+        //Ingreso las combinaciones de tres dados
+        
+        for (int i = 1; i < 5; i++) {
+            for (int j = i + 1; j < 5; j++) {
+                comb = new Integer[3];
+                comb[0] = dados[0].getNumero(); //La base se mantiene fija
+                comb[1] = dados[i].getNumero();
+                comb[2] = dados[j].getNumero();
+                combinaciones.add(comb);
+            }
+        }
+        //Ingreso las combinaciones de cuatro dados
+        
+        for (int i = 1; i < 5; i++) {
+            for (int j = i + 1; j < 5; j++) {
+                for (int k = j + 1; k < 5; k++) {
+                    comb = new Integer[4];
+                    comb[0] = dados[0].getNumero(); //La base se mantiene fija
+                    comb[1] = dados[i].getNumero();
+                    comb[2] = dados[j].getNumero();
+                    comb[3] = dados[k].getNumero();
+                    combinaciones.add(comb);
+                }
+            }
+        }
+        //Ingreso la combinacion de los cinco dados
+        comb = new Integer[5];
+        comb[0] = dados[0].getNumero();
+        comb[1] = dados[1].getNumero();
+        comb[2] = dados[2].getNumero();
+        comb[3] = dados[3].getNumero();
+        comb[4] = dados[4].getNumero();
+        combinaciones.add(comb);
+        
+        return combinaciones;
+    }
+    public Boolean tableroLleno(){
+        //TODO: Buscar si existe alguna posicion que que empiece con color verde ?
+        return false; //place holder para que no de error mientras se implementa
+    }
 }
