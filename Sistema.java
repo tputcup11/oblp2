@@ -53,14 +53,14 @@ public class Sistema {
     public String ayuda() {
         return partida.ayuda();
     }
-
+    
+    public Boolean tableroLleno() {
+        return partida.tableroLleno();
+    }
     public ArrayList<Jugador> ranking() {
         Collections.sort(listaJugadores,new CriterioGanadas());
         return listaJugadores;
     }
-    
-
-  
     
     //Criterio de comparacion del sort.
      private class CriterioGanadas implements Comparator<Jugador> {
