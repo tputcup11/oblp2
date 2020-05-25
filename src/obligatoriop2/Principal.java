@@ -210,7 +210,7 @@ public class Principal {
                 case "C":
                     ArrayList<Jugador> listaJugadores=sistema.ranking();
                     System.out.println("RANKING\n");
-                    for (int i = 0; i < 3; i++){
+                    for (int i = 0; i < listaJugadores.size(); i++){
                         System.out.println( i+1 + ")"+ listaJugadores.get(i).toString()+"\n     Partidas Jugadas: "+listaJugadores.get(i).getPartidasJugadas()+"\n     Partidas Ganadas: "+listaJugadores.get(i).getPartidasGanadas());
                     }
                     break;
