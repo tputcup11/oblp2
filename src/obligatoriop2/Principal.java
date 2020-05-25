@@ -148,6 +148,10 @@ public class Principal {
                             System.out.println("Debe ingresar una sola letra y no puede ser un número:");
                         }
                     } 
+                    jugador1.setPartidasJugadas();
+                    jugador2.setPartidasJugadas();
+                    sistema.modificarJugador(jugador1);
+                    sistema.modificarJugador(jugador2);
                     sistema.crearPartida(jugador1, siglaJ1, jugador2, siglaJ2);
                     sistema.getPartida().inicializar();
                     boolean seguir = true;
@@ -184,7 +188,6 @@ public class Principal {
                                     System.out.println("Opcion X");
                                     seguir = false;
                                     abandona = true;
-                                    //sistema.mostrarGanador();
                                     break;
                                 case 'P':
                                     System.out.println("Opcion P");
@@ -202,14 +205,12 @@ public class Principal {
                         
                     }
                     System.out.println(sistema.mostrarGanador(abandona));
-                    
-                    
-                    
+
                     break;
                 case "C":
                     ArrayList<Jugador> listaJugadores=sistema.ranking();
                     System.out.println("RANKING\n");
-                    for (int i = 0; i < sistema.getListaJugadores().size(); i++){
+                    for (int i = 0; i < 3; i++){
                         System.out.println( i+1 + ")"+ listaJugadores.get(i).toString()+"\n     Partidas Jugadas: "+listaJugadores.get(i).getPartidasJugadas()+"\n     Partidas Ganadas: "+listaJugadores.get(i).getPartidasGanadas());
                     }
                     break;

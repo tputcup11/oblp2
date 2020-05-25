@@ -1,5 +1,7 @@
 package obligatoriop2;
 
+import java.util.Objects;
+
 public class Jugador{
    //variables de instancia
    private String nombre;
@@ -45,7 +47,7 @@ public class Jugador{
     }
 
     public void setPartidasGanadas() {
-        this.partidasGanadas = partidasGanadas++;
+        this.partidasGanadas++;
     }
 
     public int getPartidasJugadas() {
@@ -53,12 +55,17 @@ public class Jugador{
     }
 
     public void setPartidasJugadas() {
-        this.partidasJugadas = partidasJugadas++;
+        this.partidasJugadas++;
     }
 
     @Override
     public String toString(){
         return "Nombre: "+this.getNombre()+", Edad: "+ this.getEdad()+", Alias: "+this.getAlias();
+    }
+    @Override
+    public boolean equals(Object obj){
+        Jugador jugador = (Jugador)obj;
+        return this.getAlias().equals(jugador.getAlias());
     }
 }
     

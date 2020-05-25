@@ -25,8 +25,11 @@ public class Sistema {
 
     public void agregarJugador(Jugador unJugador){
         listaJugadores.add(unJugador);
-    }                                                                                                                   
-
+    }
+    public void modificarJugador(Jugador unJugador){
+        listaJugadores.set(listaJugadores.indexOf(unJugador), unJugador);
+    }
+    
     //Para TESTEAR: Metodo que ordena ArrayList por cant. de partidas ganadas.
     public ArrayList<Jugador> ordenarGanadores(){
         Collections.sort(this.getListaJugadores(), new CriterioGanadas());
@@ -54,9 +57,9 @@ public class Sistema {
         return partida.ayuda();
     }
     public String mostrarGanador(boolean abandona){
+        modificarJugador(partida.devolverGanador(abandona));
         return partida.mostrarGanador(abandona);
     }
-
     public Boolean tableroLleno() {
         return partida.tableroLleno();
     }
@@ -68,7 +71,7 @@ public class Sistema {
     //Criterio de comparacion del sort.
      private class CriterioGanadas implements Comparator<Jugador> {
         public int compare(Jugador jugador1, Jugador jugador2){
-            return jugador1.getPartidasGanadas() - jugador2.getPartidasGanadas();
+            return jugador2.getPartidasGanadas() - jugador1.getPartidasGanadas();
         }
     }
 } 

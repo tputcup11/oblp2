@@ -249,12 +249,35 @@ public class Partida {
             respuesta = "Fin de la Partida: EMPATE \n Puntos Finales: \n"+jugador1.getAlias()+": "+puntosJ1+"\n"+jugador2.getAlias()+": "+puntosJ2+"\n";
         }else{
             respuesta = "Fin de la Partida: GANADOR: "+ganador.getAlias()+" \nPuntos Finales: \n"+jugador1.getAlias()+": "+puntosJ1+"\n"+jugador2.getAlias()+": "+puntosJ2+"\n";
-            ganador.setPartidasGanadas();
         }
-        jugador1.setPartidasJugadas();
-        jugador2.setPartidasJugadas();
-        
-
         return respuesta+"Tablero Final: \n"+tablero.toString();
     }
+    public Jugador devolverGanador(boolean abandona){
+        boolean empate = false;
+        Jugador ganador = jugador1;
+        
+        int puntosJ1 = tablero.contarPuntos(sigla1);
+        int puntosJ2 = tablero.contarPuntos(sigla2);
+        
+        if (abandona) {
+            if (turnoJugador1) {
+                ganador = jugador2;
+            }
+        }else{
+            if (puntosJ1 > puntosJ2) {
+                ganador = jugador1;
+            }else if (puntosJ1 < puntosJ2) {
+                ganador = jugador2;
+            }else{
+                empate = true;
+            }
+        }
+        if (empate) {
+            ganador = null;
+        }else{
+            ganador.setPartidasGanadas();
+        }
+        return ganador;
+    }
+    
 }
