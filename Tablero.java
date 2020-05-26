@@ -1,5 +1,5 @@
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 package obligatoriop2;
-
 public class Tablero {
 
     private String[][] tablero;
@@ -44,13 +44,13 @@ public class Tablero {
         int fil = fila(numero);
 
         if (estaOcupado(numero)) {
-            throw new Exception("Esta ocupado");
+            throw new Exception("Este espacio del tablero ya está ocupado");
         } else {
             tablero[fil][col] = sigla + "";
         }
 
     }
-
+    @Override
     public String toString() {
         String respuesta = "";
         for (int fila = 0; fila < tablero.length; fila++) {
@@ -170,6 +170,6 @@ public class Tablero {
         
         return puntos;
     }
-
-    
 }
+    
+

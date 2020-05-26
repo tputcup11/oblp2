@@ -1,5 +1,5 @@
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 package obligatoriop2;
-
 import java.util.*;
 
 public class Sistema {
@@ -79,9 +79,9 @@ public class Sistema {
     }
     //Criterio de comparacion del sort.
      private class CriterioGanadas implements Comparator<Jugador> {
+        @Override
         public int compare(Jugador jugador1, Jugador jugador2){
             return (jugador1.getPartidasGanadas() - jugador2.getPartidasGanadas())*(-1);
         }
     }
 }  
-    
