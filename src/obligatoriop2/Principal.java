@@ -1,4 +1,4 @@
-//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 
 package obligatoriop2;
 import java.util.ArrayList;
@@ -25,12 +25,12 @@ public class Principal {
         while (!seleccion.equals("D")){
             switch (seleccion) {
                 case "A":
-                    nombreJugador = Utilidades.ingresarPalabra("Ingrese el nombre del Jugador:");
-                    edadJugador = Utilidades.ingresarEntero(1, 110, "Ingrese la edad del Jugador:");
+                    nombreJugador = Utilidades.ingresarPalabra("Por favor, ingrese el nombre del jugador:");
+                    edadJugador = Utilidades.ingresarEntero(1, 110, "Por favor, ingrese la edad del jugador:");
                     aliasJugador = "";
                     valorValido = false;
                     while(!valorValido){
-                        aliasJugador = Utilidades.ingresarPalabra("Ingrese el alias del jugador:");
+                        aliasJugador = Utilidades.ingresarPalabra("Por favor, ingrese el alias del jugador:");
                         valorValido = true;
                         for (Jugador player : sistema.getListaJugadores()) {
                             if (player.getAlias().equals(aliasJugador)){
@@ -43,29 +43,29 @@ public class Principal {
                     //Crear jugador
                     Jugador jugador = new Jugador(nombreJugador, edadJugador, aliasJugador);
                     sistema.getListaJugadores().add(jugador);
-                    System.out.println("Jugador Ingresado: " + jugador.toString());
+                    System.out.println("Jugador ingresado: " + jugador.toString());
                     break;
                 case "B"://Iniciar Juego
                     if(sistema.getListaJugadores().size() > 1){
                         //Pedir Datos
                         System.out.println(Utilidades.imprimirLista(sistema.getListaJugadores()));
-                        selection = Utilidades.ingresarEntero(1,sistema.getListaJugadores().size(), "Seleccione un Jugador:");
+                        selection = Utilidades.ingresarEntero(1,sistema.getListaJugadores().size(), "Seleccione un jugador:");
                         jugador1 = sistema.getListaJugadores().get(selection - 1);
-                        siglaJ1 = Utilidades.ingresarLetra("Ingrese una letra para el Jugador 1:");
+                        siglaJ1 = Utilidades.ingresarLetra("Ingrese una letra correspondiente al jugador 1:");
                         
                         System.out.println(Utilidades.imprimirLista(sistema.getListaJugadores()));
                         valorValido = false;
                         //Verifica que no se seleccione el mismo jugador otra vez.
                         while (!valorValido){
-                            selection = Utilidades.ingresarEntero(1,sistema.getListaJugadores().size(), "Seleccione el segundo Jugador:");
+                            selection = Utilidades.ingresarEntero(1,sistema.getListaJugadores().size(), "Seleccione el segundo jugador:");
                             jugador2 = sistema.getListaJugadores().get(selection - 1);
                             if (!jugador1.equals(jugador2)){
                                 valorValido = true;
                             }else{
-                                System.out.println("No puede seleccionar al mismo jugador dos veces. \n");
+                                System.out.println("Disculpe, no puede seleccionar al mismo jugador dos veces. \n");
                             }
                         }
-                        siglaJ2 = Utilidades.ingresarLetra("Ingrese una letra para el Jugador 1:");
+                        siglaJ2 = Utilidades.ingresarLetra("Ingrese una letra para el jugador 2:");
                         
                         //Elegir Modo
                         System.out.println("¿Es modo Test? (S)i ó (N)o:");

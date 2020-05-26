@@ -1,11 +1,11 @@
-//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 package obligatoriop2;
 
 public class Jugador{
    //variables de instancia
+   private String alias;
    private String nombre;
    private int edad;
-   private String alias;
    private int partidasGanadas;
    private int partidasJugadas;
 

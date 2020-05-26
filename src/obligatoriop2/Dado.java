@@ -1,4 +1,4 @@
-//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 package obligatoriop2;
 import java.util.Random;
 
@@ -18,4 +18,3 @@ public class Dado {
         this.numero = numero;
     }
 }
-    

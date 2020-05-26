@@ -1,4 +1,4 @@
-//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 package obligatoriop2;
 import java.util.*;
 
@@ -27,7 +27,7 @@ public class Sistema {
         listaJugadores.add(unJugador);
     }                                                                                                                   
 
-    //Para TESTEAR: Metodo que ordena ArrayList por cant. de partidas ganadas.
+    //Método que ordena arraylist por partidas ganadas
     public ArrayList<Jugador> ordenarGanadores(){
         Collections.sort(this.getListaJugadores(), new CriterioGanadas());
         return this.getListaJugadores();
@@ -77,7 +77,7 @@ public class Sistema {
     public String abandonar() {
         return partida.abandonar();
     }
-    //Criterio de comparacion del sort.
+    //Criterio de comparacion del sort (INNER CLASS).
      private class CriterioGanadas implements Comparator<Jugador> {
         @Override
         public int compare(Jugador jugador1, Jugador jugador2){

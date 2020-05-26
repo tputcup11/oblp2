@@ -1,4 +1,4 @@
-//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
+//Alumnos: Julieta Aboy (254051) y Manuel Garrido (251152)
 package obligatoriop2;
 import java.util.ArrayList;
 
@@ -75,11 +75,11 @@ public class Partida {
                 try {
                     numerosRecuperados[i] = Integer.parseInt(corta[i]);
                     if (numerosRecuperados[i] < 1 || numerosRecuperados[i] > 6) {
-                        throw new Exception("No es valido el numero");
+                        throw new Exception("Este número no es valido");
                     }
 
                 } catch (NumberFormatException ex) {
-                    throw new Exception("Solamente se acepta numericos");
+                    throw new Exception("Solamente se deben ingresar números.");
                 }
             }
 
@@ -88,7 +88,7 @@ public class Partida {
             }
 
         } else {
-            throw new Exception("Tiene que ser 5 numeros");
+            throw new Exception("Deben ser 5 numeros");
         }
     }
 
@@ -100,14 +100,14 @@ public class Partida {
             try {
                 numerosRecuperados[i] = Integer.parseInt(corta[i]);
                 if (numerosRecuperados[i] < 1 || numerosRecuperados[i] > 6) {
-                    throw new Exception("No es valido el numero");
+                    throw new Exception("El número no es valido");
                 } else {
                     if (!numerosDados.contains(numerosRecuperados[i])) {
-                        throw new Exception("No estan en los dados");
+                        throw new Exception("Los números ingresados no estan en los dados");
                     }
                 }
             } catch (NumberFormatException ex) {
-                throw new Exception("Solamente se acepta numericos");
+                throw new Exception("Solamente se deben ingresar números");
             }
         }
 
@@ -278,10 +278,10 @@ public class Partida {
         //Muestra el ganador para el caso en el que se interrumpa la partida.
         if (turnoJugador1) {
             jugador2.setPartidasGanadas(jugador2.getPartidasGanadas() + 1);
-            return "\n FIN DE LA PARTIDA: Por abandono de un jugador. \n Ganador: " + jugador2.getAlias() + " con " + tablero.puntaje(sigla2) + " puntos. \n El jugador " + jugador1.getAlias() + " obtuvo " +tablero.puntaje(sigla1) + " puntos. \n Tablero Final: \n \n" + tablero.toString();
+            return "\n FIN DE LA PARTIDA. Un jugador ha abandonado la partida. \n El ganador es: " + jugador2.getAlias() + " con " + tablero.puntaje(sigla2) + " puntos. \n El jugador " + jugador1.getAlias() + " obtuvo " +tablero.puntaje(sigla1) + " puntos. \n Tablero Final: \n \n" + tablero.toString();
         } else {
             jugador1.setPartidasGanadas(jugador1.getPartidasGanadas() + 1);
-            return "\n FIN DE LA PARTIDA: Por abandono de un jugador. \n Ganador: " + jugador1.getAlias() + " con " + tablero.puntaje(sigla1) + " puntos. \n El jugador " + jugador2.getAlias() + " obtuvo " +tablero.puntaje(sigla2) + " puntos. \n Tablero Final: \n \n" + tablero.toString();
+            return "\n FIN DE LA PARTIDA. Un jugador ha abandonado la partida. \n El ganador es: " + jugador1.getAlias() + " con " + tablero.puntaje(sigla1) + " puntos. \n El jugador " + jugador2.getAlias() + " obtuvo " +tablero.puntaje(sigla2) + " puntos. \n Tablero Final: \n \n" + tablero.toString();
         }
     }
     @Override
