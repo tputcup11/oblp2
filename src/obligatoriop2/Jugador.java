@@ -1,6 +1,5 @@
+//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
 package obligatoriop2;
-
-import java.util.Objects;
 
 public class Jugador{
    //variables de instancia
@@ -10,7 +9,6 @@ public class Jugador{
    private int partidasGanadas;
    private int partidasJugadas;
 
-   
    public Jugador(String nombreJugador, int edadJugador, String aliasJugador){
        this.nombre = nombreJugador;
        this.edad = edadJugador;
@@ -18,6 +16,7 @@ public class Jugador{
        this.partidasGanadas = 0;
        this.partidasJugadas = 0;
    }
+   
     public String getNombre() {
         return nombre;
     }
@@ -46,18 +45,20 @@ public class Jugador{
         return partidasGanadas;
     }
 
-    public void setPartidasGanadas() {
-        this.partidasGanadas++;
+    public void setPartidasGanadas(int partidasGanadas) {
+        this.partidasGanadas = partidasGanadas;
     }
 
     public int getPartidasJugadas() {
         return partidasJugadas;
     }
 
-    public void setPartidasJugadas() {
-        this.partidasJugadas++;
+    public void setPartidasJugadas(int partidasJugadas) {
+        this.partidasJugadas = partidasJugadas;
     }
-
+    public String devolverRanking(){
+        return this.toString() + "\n Partidas Ganadas: " + this.getPartidasGanadas()+"\n Partidas Jugadas:"+ this.getPartidasJugadas();
+    }
     @Override
     public String toString(){
         return "Nombre: "+this.getNombre()+", Edad: "+ this.getEdad()+", Alias: "+this.getAlias();

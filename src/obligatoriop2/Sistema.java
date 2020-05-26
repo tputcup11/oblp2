@@ -1,5 +1,5 @@
+//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
 package obligatoriop2;
- 
 import java.util.*;
 
 public class Sistema {
@@ -25,41 +25,35 @@ public class Sistema {
 
     public void agregarJugador(Jugador unJugador){
         listaJugadores.add(unJugador);
-    }
-    public void modificarJugador(Jugador unJugador){
-        listaJugadores.set(listaJugadores.indexOf(unJugador), unJugador);
-    }
-    
+    }                                                                                                                   
+
     //Para TESTEAR: Metodo que ordena ArrayList por cant. de partidas ganadas.
     public ArrayList<Jugador> ordenarGanadores(){
         Collections.sort(this.getListaJugadores(), new CriterioGanadas());
         return this.getListaJugadores();
     }
-    
-    public void crearPartida(Jugador jugador1,char sigla1,Jugador jugador2,char sigla2){
-        partida=new Partida(jugador1,sigla1,jugador2,sigla2);
+
+    public void crearPartida(Jugador jugador1,char sigla1,Jugador jugador2,char sigla2,boolean test){
+        partida=new Partida(jugador1,sigla1,jugador2,sigla2,test);
     }
-    
+
     public void ponerFichaBase() throws Exception{
         partida.ponerFichaBase();
     }
-    
+
     public void ponerFichaExtra(String extra) throws Exception{
         partida.ponerFichaExtra(extra);
     }
-    
+
     public void pasar()
     {
         partida.pasar();
     }
-    
+
     public String ayuda() {
         return partida.ayuda();
     }
-    public String mostrarGanador(boolean abandona){
-        modificarJugador(partida.devolverGanador(abandona));
-        return partida.mostrarGanador(abandona);
-    }
+
     public Boolean tableroLleno() {
         return partida.tableroLleno();
     }
@@ -67,11 +61,27 @@ public class Sistema {
         Collections.sort(listaJugadores,new CriterioGanadas());
         return listaJugadores;
     }
-    
+
+    public boolean continuar() {
+         return !partida.tableroLleno();
+    }
+
+    public String analisis() {
+        return partida.analisis();
+    }
+
+    public void cargarDados(String numeros) throws Exception {
+         partida.cargarDados(numeros);
+    }
+
+    public String abandonar() {
+        return partida.abandonar();
+    }
     //Criterio de comparacion del sort.
      private class CriterioGanadas implements Comparator<Jugador> {
+        @Override
         public int compare(Jugador jugador1, Jugador jugador2){
-            return jugador2.getPartidasGanadas() - jugador1.getPartidasGanadas();
+            return (jugador1.getPartidasGanadas() - jugador2.getPartidasGanadas())*(-1);
         }
     }
-} 
+}  

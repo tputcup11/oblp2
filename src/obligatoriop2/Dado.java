@@ -1,13 +1,9 @@
+//Alumnos: Julieta Aboy (...) y Manuel Garrido (251152)
 package obligatoriop2;
-
 import java.util.Random;
 
 public class Dado {
     private int numero;
-
-    public Dado() {
-        
-    }
 
     public void tirar(){
         Random random = new Random();
